@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Профиль пользователя</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #FFDAB9, #FFCC99);
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        .profile-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .profile-title {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .profile-info {
+            font-size: 1.2em;
+            color: #555;
+            margin: 10px 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .profile-avatar {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logout-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #FF6F61;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-button:hover {
+            background-color: #e04b41;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-title {
+                font-size: 2em;
+            }
+
+            .profile-info {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="profile-container">
+    <div class="profile-title">Профиль пользователя</div>
+
+    <div>
+        <img th:src="${avatar != null ? avatar : '/images/default-avatar.png'}" alt="Аватар пользователя" class="profile-avatar" style="width:150px; height:150px;">
+    </div>
+
+    <p class="profile-info">Имя: <span th:text="${name}">Имя</span></p>
+    <p class="profile-info">Фамилия: <span th:text="${surname}">Фамилия</span></p>
+    <p class="profile-info">ID: <span th:text="${id}">ID</span></p>
+    <p class="profile-info">Email: <span th:text="${email}">Email</span></p>
+
+    <a th:href="@{/logout}" class="logout-button">Выйти</a>
+</div>
+</body>
+</html>
